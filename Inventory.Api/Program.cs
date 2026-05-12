@@ -43,9 +43,17 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    if (!dbContext.Database.CanConnect())
+    var connectionInfo = new NpgsqlConnectionStringBuilder(connectionString);
+    try
     {
-        throw new InvalidOperationException("Could not connect to PostgreSQL with ConnectionStrings:DefaultConnection.");
+        dbContext.Database.OpenConnection();
+        dbContext.Database.CloseConnection();
+    }
+    catch (NpgsqlException ex)
+    {
+        throw new InvalidOperationException(
+            $"Could not connect to PostgreSQL (Host={connectionInfo.Host};Port={connectionInfo.Port};Database={connectionInfo.Database};Username={connectionInfo.Username}). {ex.Message}",
+            ex);
     }
 }
 
