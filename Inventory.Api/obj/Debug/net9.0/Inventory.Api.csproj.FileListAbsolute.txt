@@ -31,3 +31,12 @@ C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\obj\De
 C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\obj\Debug\net9.0\Inventory.Api.pdb
 C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\obj\Debug\net9.0\Inventory.Api.genruntimeconfig.cache
 C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\obj\Debug\net9.0\ref\Inventory.Api.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\obj\Debug\net9.0\Inventory.Api.sourcelink.json
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Carlo\OneDrive\Escritorio\Nueva carpeta\CCL-Prueba\Inventory.Api\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
