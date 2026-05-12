@@ -1,0 +1,42 @@
+<main class="inventario-container">
+  <section class="inventario-card">
+    <header class="header">
+      <h1>Inventario</h1>
+      <div class="actions">
+        <a routerLink="/movimiento">Registrar movimiento</a>
+        <button type="button" (click)="cargarInventario()" [disabled]="loading">
+          {{ loading ? 'Cargando...' : 'Actualizar' }}
+        </button>
+      </div>
+    </header>
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    @if (!loading && inventario.length === 0) {
+      <p>No hay productos para mostrar.</p>
+    }
+
+    @if (inventario.length > 0) {
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of inventario; track item.id) {
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.cantidad }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </section>
+</main>

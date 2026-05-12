@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MovimientoResponse, ProductosService } from '../../core/productos.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movimiento',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './movimiento.component.html',
   styleUrl: './movimiento.component.css'
 })

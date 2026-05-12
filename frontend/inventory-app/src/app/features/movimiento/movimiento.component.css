@@ -22,6 +22,18 @@ h1 {
   font-size: 1.4rem;
 }
 
+.link-inventario {
+  align-self: flex-start;
+  margin-bottom: 0.25rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  background: #e0e7ff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  height: fit-content;
+}
+
 label {
   font-size: 0.9rem;
   font-weight: 600;

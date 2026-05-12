@@ -1,6 +1,7 @@
 <main class="movimiento-container">
   <form class="movimiento-card" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Registrar movimiento</h1>
+    <a class="link-inventario" routerLink="/inventario">Ver inventario</a>
 
     <label for="productoId">ID Producto</label>
     <input id="productoId" type="number" formControlName="productoId" />

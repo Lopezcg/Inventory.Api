@@ -17,6 +17,12 @@ export interface MovimientoResponse {
   stockActual: number;
 }
 
+export interface InventarioItem {
+  id: number;
+  nombre: string;
+  cantidad: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ProductosService {
   private readonly apiUrl = 'http://localhost:5038';
@@ -27,11 +33,19 @@ export class ProductosService {
   ) {}
 
   registrarMovimiento(payload: MovimientoRequest): Observable<MovimientoResponse> {
-    const token = this.authService.getToken();
-    const headers = token
-      ? new HttpHeaders({ Authorization: `Bearer ${token}` })
-      : undefined;
+    return this.http.post<MovimientoResponse>(`${this.apiUrl}/productos/movimiento`, payload, {
+      headers: this.getAuthHeaders()
+    });
+  }
 
-    return this.http.post<MovimientoResponse>(`${this.apiUrl}/productos/movimiento`, payload, { headers });
+  obtenerInventario(): Observable<InventarioItem[]> {
+    return this.http.get<InventarioItem[]>(`${this.apiUrl}/productos/inventario`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  private getAuthHeaders(): HttpHeaders | undefined {
+    const token = this.authService.getToken();
+    return token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : undefined;
   }
 }
