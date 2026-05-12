@@ -25,4 +25,8 @@ export class AuthService {
       .post<LoginResponse>(`${this.apiUrl}/auth/login`, payload)
       .pipe(map((response) => localStorage.setItem(this.tokenStorageKey, response.accessToken)));
   }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenStorageKey);
+  }
 }

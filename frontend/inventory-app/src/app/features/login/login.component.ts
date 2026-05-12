@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/auth.service';
 import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
   });
 
   constructor(
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) {}
 
   submit(): void {
@@ -40,9 +42,10 @@ export class LoginComponent {
     this.successMessage = '';
 
     this.authService.login(username, password).subscribe({
-      next: () => {
+      next: async () => {
         this.successMessage = 'Inicio de sesión exitoso.';
         this.loading = false;
+        await this.router.navigate(['/movimiento']);
       },
       error: () => {
         this.errorMessage = 'Usuario o contraseña inválidos.';
