@@ -39,21 +39,32 @@ CREATE TABLE IF NOT EXISTS productos (
 
 > Los datos iniciales se cargan manualmente en PostgreSQL.
 
-### Inicialización opcional con script (Windows/PowerShell)
+### Inicialización automática (Windows/PowerShell)
 
-Se incluye un script opcional para crear la tabla automáticamente:
+**Script completo** (recomendado): crea BD + tabla + seed en una sola ejecución:
 
 ```powershell
-.\scripts\init-db.ps1 -Database TU_BD -Username postgres -Password TU_PASSWORD
+.\scripts\setup-db-complete.ps1 -Database inventory_db -Username postgres -Password TU_PASSWORD
 ```
 
-Con datos semilla de ejemplo:
+O si tienes `DB_PASSWORD` en el entorno:
+
+```powershell
+.\scripts\setup-db-complete.ps1 -Database inventory_db -Username postgres
+```
+
+Datos semilla que se insertan automáticamente:
+- Teclado (10 unidades)
+- Mouse (15 unidades)
+- Monitor (5 unidades)
+- Laptop (3 unidades)
+- Cable HDMI (50 unidades)
+
+**Script alternativo** (solo tabla + seed en BD existente):
 
 ```powershell
 .\scripts\init-db.ps1 -Database TU_BD -Username postgres -Password TU_PASSWORD -SeedData
 ```
-
-También puedes omitir `-Password` si tienes `DB_PASSWORD` definido en entorno.
 
 ## Configuración de variables (`.env`)
 
