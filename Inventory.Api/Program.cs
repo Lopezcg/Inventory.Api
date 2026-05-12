@@ -1,5 +1,6 @@
 using System.Text;
 using Inventory.Api.Data;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -43,7 +44,6 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    var connectionInfo = new NpgsqlConnectionStringBuilder(connectionString);
     try
     {
         dbContext.Database.OpenConnection();
@@ -51,9 +51,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (NpgsqlException ex)
     {
-        throw new InvalidOperationException(
-            $"Could not connect to PostgreSQL (Host={connectionInfo.Host};Port={connectionInfo.Port};Database={connectionInfo.Database};Username={connectionInfo.Username}). {ex.Message}",
-            ex);
+        throw new InvalidOperationException("Could not connect to PostgreSQL with configured connection settings.", ex);
     }
 }
 
@@ -62,6 +60,19 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(context =>
+    {
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        return context.Response.WriteAsJsonAsync(new
+        {
+            error = "An unexpected error occurred.",
+            traceId = context.TraceIdentifier
+        });
+    });
+});
 
 app.UseHttpsRedirection();
 
