@@ -17,6 +17,18 @@ public class ProductosController : ControllerBase
         _dbContext = dbContext;
     }
 
+    [HttpGet("inventario")]
+    public async Task<ActionResult<IReadOnlyList<InventarioItemResponse>>> ObtenerInventario()
+    {
+        var inventario = await _dbContext.Productos
+            .AsNoTracking()
+            .OrderBy(p => p.Nombre)
+            .Select(p => new InventarioItemResponse(p.Id, p.Nombre, p.Cantidad))
+            .ToListAsync();
+
+        return Ok(inventario);
+    }
+
     [HttpPost("movimiento")]
     public async Task<ActionResult<MovimientoResponse>> RegistrarMovimiento([FromBody] MovimientoRequest request)
     {
@@ -59,4 +71,6 @@ public class ProductosController : ControllerBase
     public sealed record MovimientoRequest(int ProductoId, string Tipo, int Cantidad);
 
     public sealed record MovimientoResponse(int ProductoId, string Nombre, string Tipo, int CantidadMovida, int StockActual);
+
+    public sealed record InventarioItemResponse(int Id, string Nombre, int Cantidad);
 }
