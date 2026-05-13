@@ -1,0 +1,40 @@
+<main class="movimiento-container">
+  <form class="movimiento-card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Registrar movimiento</h1>
+    <a class="link-inventario" routerLink="/inventario">Ver inventario</a>
+
+    <label for="productoId">ID Producto</label>
+    <input id="productoId" type="number" formControlName="productoId" />
+    @if (form.controls.productoId.invalid && form.controls.productoId.touched) {
+      <p class="field-error">Ingresa un id válido mayor que 0.</p>
+    }
+
+    <label for="tipo">Tipo de movimiento</label>
+    <select id="tipo" formControlName="tipo">
+      <option value="entrada">Entrada</option>
+      <option value="salida">Salida</option>
+    </select>
+
+    <label for="cantidad">Cantidad</label>
+    <input id="cantidad" type="number" formControlName="cantidad" />
+    @if (form.controls.cantidad.invalid && form.controls.cantidad.touched) {
+      <p class="field-error">Ingresa una cantidad válida mayor que 0.</p>
+    }
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Registrando...' : 'Registrar' }}
+    </button>
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    @if (result) {
+      <div class="success-box">
+        <p><strong>Producto:</strong> {{ result.nombre }} (ID {{ result.productoId }})</p>
+        <p><strong>Movimiento:</strong> {{ result.tipo }} {{ result.cantidadMovida }}</p>
+        <p><strong>Stock actual:</strong> {{ result.stockActual }}</p>
+      </div>
+    }
+  </form>
+</main>
